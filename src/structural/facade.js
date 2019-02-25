@@ -25,17 +25,17 @@ class AudioMixer
 // behind a simple interface. It's a trade-off between
 // functionality and simplicity.
 class VideoConverter is
-method convert(filename, format): File is
-file = new VideoFile(filename)
-sourceCodec = new CodecFactory.extract(file)
-if (format == "mp4")
-  destinationCodec = new MPEG4CompressionCodec()
-else
-  destinationCodec = new OggCompressionCodec()
-buffer = BitrateReader.read(filename, sourceCodec)
-result = BitrateReader.convert(buffer, destinationCodec)
-result = (new AudioMixer()).fix(result)
-return new File(result)
+  method convert(filename, format): File is
+    file = new VideoFile(filename)
+    sourceCodec = new CodecFactory.extract(file)
+    if (format == "mp4")
+      destinationCodec = new MPEG4CompressionCodec()
+    else
+      destinationCodec = new OggCompressionCodec()
+    buffer = BitrateReader.read(filename, sourceCodec)
+    result = BitrateReader.convert(buffer, destinationCodec)
+    result = (new AudioMixer()).fix(result)
+    return new File(result)
 
 // Application classes don't depend on a billion classes
 // provided by the complex framework. Also, if you decide to
