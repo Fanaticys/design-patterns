@@ -22,7 +22,7 @@ abstract class AbstractHandler implements Handler {
     return handler;
   }
 
-  public handle(request: string): string {
+  public handle(request: string): any {
     if (this.nextHandler) {
       return this.nextHandler.handle(request);
     }
